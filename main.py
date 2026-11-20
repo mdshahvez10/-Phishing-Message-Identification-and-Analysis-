@@ -63,6 +63,9 @@ def main():
     parser.add_argument("--web", action="store_true", help="Launch Local Web Dashboard on port 8080")
     parser.add_argument("--port", type=int, default=8080, help="Port for web dashboard (default: 8080)")
     parser.add_argument("--charts", action="store_true", help="Regenerate all visual evaluation plots")
+    parser.add_argument("--batch", type=str, metavar="CSV_FILE", help="Run batch evaluation on a large dataset CSV")
+    parser.add_argument("--samples", type=int, default=None, help="Sample size for batch evaluation")
+    parser.add_argument("--train-model", action="store_true", help="Train and serialize high-accuracy model on data/email_text.csv")
 
     args = parser.parse_args()
 
@@ -90,6 +93,28 @@ def main():
     elif args.web:
         from phish_analyzer.web_app import launch_web_server
         launch_web_server(port=args.port)
+    elif args.batch:
+        from phish_analyzer.batch_evaluator import BatchEvaluator
+        print(f"[*] Running Batch Evaluation on: {args.batch}")
+        ev = BatchEvaluator()
+        res = ev.evaluate_csv(args.batch, max_rows=args.samples)
+        m = res["metrics"]
+        cm = res["confusion_matrix"]
+        print("\n" + "=" * 60)
+        print("           BATCH DATASET EVALUATION RESULTS          ")
+        print("=" * 60)
+        print(f"  • Total Evaluated : {res['total_evaluated']:,}")
+        print(f"  • Accuracy        : {m['accuracy']}%")
+        print(f"  • Precision       : {m['precision']}%")
+        print(f"  • Recall          : {m['recall']}%")
+        print(f"  • F1-Score        : {m['f1_score']}%")
+        print(f"  • ROC-AUC         : {m['roc_auc']}%")
+        print(f"  • False Positives : {cm['fp']} (FPR: {m['fpr']}%)")
+        print(f"  • False Negatives : {cm['fn']} (FNR: {m['fnr']}%)")
+        print("=" * 60)
+    elif args.train_model:
+        from train_large_model import train_and_export_model
+        train_and_export_model()
     elif args.charts:
         from phish_analyzer.comparison import DiscrepancyAnalyzer
         from phish_analyzer.visualizer import ProjectVisualizer

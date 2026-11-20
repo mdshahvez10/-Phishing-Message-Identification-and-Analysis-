@@ -76,14 +76,17 @@ c:\Users\wakar\Documents\Downloads\project\
 ## ⚡ Quick Start & Execution
 
 ### 1. Run via Windows 1-Click Launcher
-- **Direct GUI Launcher:** Double-click `launch_gui.bat` in File Explorer to directly open the Desktop GUI.
+- **Direct GUI Launcher:** Double-click `launch_gui.bat` in File Explorer to directly open the Desktop GUI (includes new Big Data Batch Evaluator tab).
 - **Main Menu Launcher:** Double-click `run_project.bat` in File Explorer, or select an option from the menu:
 - `[1]` Run CLI Evaluation
-- `[2]` Launch Desktop GUI
-- `[3]` Launch Web Dashboard (`http://localhost:8080`)
-- `[4]` Regenerate Charts in `results/`
-- `[5]` Open Printable Report (`PROJECT_REPORT.html`)
-- `[6]` Open Presentation Slides (`PRESENTATION_SLIDES.html`)
+- `[2]` Launch Desktop GUI (with Big Data Batch Evaluator)
+- `[3]` Launch Local Web Dashboard (`http://localhost:8080`)
+- `[4]` Run Large Dataset Batch Evaluation (CLI Mode on `data/Nazario_5.csv`)
+- `[5]` Retrain Large ML Model on `data/email_text.csv`
+- `[6]` Regenerate Charts in `results/`
+- `[7]` Open Printable Report (`PROJECT_REPORT.html`)
+- `[8]` Open Presentation Slides (`PRESENTATION_SLIDES.html`)
+- `[9]` Exit
 
 ### 2. Run via Command Line
 
@@ -91,8 +94,14 @@ c:\Users\wakar\Documents\Downloads\project\
 # Run CLI evaluation (prints comparison table, metrics, and generates charts)
 python main.py --cli
 
-# Launch the Tkinter Desktop GUI
+# Launch the Tkinter Desktop GUI (with Big Data Batch Evaluator)
 python main.py --gui
+
+# Run Large Dataset Batch Evaluation from CLI
+python main.py --batch data/Nazario_5.csv --samples 500
+
+# Retrain and serialize high-accuracy model on 53k emails
+python train_large_model.py --dataset data/email_text.csv
 
 # Launch the Local Web Dashboard
 python main.py --web
