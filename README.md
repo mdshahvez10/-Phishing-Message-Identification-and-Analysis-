@@ -76,7 +76,8 @@ c:\Users\wakar\Documents\Downloads\project\
 ## ⚡ Quick Start & Execution
 
 ### 1. Run via Windows 1-Click Launcher
-Double-click `run_project.bat` in File Explorer, or select an option from the menu:
+- **Direct GUI Launcher:** Double-click `launch_gui.bat` in File Explorer to directly open the Desktop GUI.
+- **Main Menu Launcher:** Double-click `run_project.bat` in File Explorer, or select an option from the menu:
 - `[1]` Run CLI Evaluation
 - `[2]` Launch Desktop GUI
 - `[3]` Launch Web Dashboard (`http://localhost:8080`)

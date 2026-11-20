@@ -21,7 +21,7 @@ echo.
 echo Active Python: %PY_EXE%
 echo.
 echo Please choose an execution mode:
-echo   [1] Run Command-Line Interface (CLI Evaluation & Metrics)
+echo   [1] Run Command-Line Interface (CLI Evaluation and Metrics)
 echo   [2] Launch Desktop GUI (Tkinter Application)
 echo   [3] Launch Local Web Dashboard (Browser-based on http://localhost:8080)
 echo   [4] Regenerate Visual Charts in results/ folder
